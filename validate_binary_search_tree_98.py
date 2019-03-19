@@ -14,6 +14,20 @@ def isValidBST(root):
     MAX = float('inf')
     return isValidBST_helper(root, MIN, MAX)
 
+def isValidBST2(root):
+    curr = root
+    stack = []
+    prev_val = float("-inf")
+    while stack or curr:
+        while curr:
+            stack.append(curr)
+            curr = curr.left
+        node = stack.pop()
+        if prev_val >= node.val: return False
+        prev_val = node.val
+        curr = node.right
+    return True
+
 if __name__ == '__main__':
     root = listtoTreeNode([1,0,2])
-    print(isValidBST(root))
+    print(isValidBST2(root))

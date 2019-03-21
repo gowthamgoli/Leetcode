@@ -17,5 +17,12 @@ def generate(numRows):
         output.append(get_row(i))
     return output
 
+def generate2(numRows):
+    output = [[1] * (i + 1) for i in range(numRows)]
+    for i in range(numRows):
+        for j in range(1, i):
+            output[i][j] = output[i-1][j-1] + output[i-1][j]
+    return output
+
 if __name__ == '__main__':
-    generate(5)
+    print(generate2(5))

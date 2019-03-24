@@ -21,6 +21,18 @@ def connect(root):
 
     return levels
 
+def connect2(root):
+    if root is None: return None
+    
+    if root.left:
+        root.left.next = root.right
+        if root.next:
+            root.right.next = root.next.left
+
+    connect2(root.left)
+    connect2(root.right)
+    return root
+
 if __name__ == '__main__':
     root = listtoTreeNode([1,2,3,4,None,None,5])
     prettyPrintTree(root)

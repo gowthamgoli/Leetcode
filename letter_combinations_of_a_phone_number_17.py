@@ -19,6 +19,35 @@ def letterCombinations(digits):
             output.append(s1 + s2)
     return output
 
+
+def letterCombinations2(digits):
+    letter_map = {
+        '2': 'abc',
+        '3': 'def',
+        '4': 'ghi',
+        '5': 'jkl',
+        '6': 'mno',
+        '7': 'pqrs',
+        '8': 'tuv',
+        '9': 'wxyz',
+    }
+    def helper(digits, output, res):
+        if len(digits) == 0:
+            output.append(res)
+            return
+        first = digits[0]
+        rest = digits[1:]
+
+        for s in letter_map[first]:
+            helper(rest, output, res + s)
+
+    output = []
+    if digits == '': return output
+    helper(digits, output, '')
+    return output
+
+
+
 if __name__ == '__main__':
-    print(letterCombinations('2'))
+    print(letterCombinations2('234'))
     print(letterCombinations(''))

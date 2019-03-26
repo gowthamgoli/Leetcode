@@ -11,5 +11,15 @@ def subsets(nums):
     backtrack(output, nums, [], 0)
     return output
 
+def subsets2(nums):
+    def dfs(output, nums, path, index):
+        output.append(path)
+        for i in range(index, len(nums)):
+            dfs(output, nums, path + [nums[i]], i + 1)
+
+    output = []
+    dfs(output, nums, [], 0)
+    return output
+
 if __name__ == "__main__":
-    print(subsets([1,2,3]))
+    print(subsets2([1,2,3,4]))

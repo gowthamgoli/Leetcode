@@ -1,7 +1,6 @@
 def permute(nums):
     def backtrack(output, permutation, nums):
         if len(permutation) == len(nums):
-            # print(permutation)
             output.append(permutation[:])
             return
 
@@ -9,13 +8,23 @@ def permute(nums):
             if num in permutation:
                 continue
             permutation.append(num)
-            print(permutation)
             backtrack(output, permutation, nums)
             permutation.pop()
-            print(permutation)
     output = []
     backtrack(output, [], nums)
     return output
 
+def permute2(nums):
+    def dfs(output, nums, path, avail):
+        if len(path) == len(nums):
+            output.append(path)
+            return
+        for i in range(len(avail)):
+            dfs(output, nums, path + [avail[i]], avail[:i] + avail[i+1:])
+
+    output = []
+    dfs(output, nums, [], nums[:])
+    return output
+
 if __name__ == "__main__":
-    print(permute([1,2,3]))
+    print(permute2([1,2,3]))

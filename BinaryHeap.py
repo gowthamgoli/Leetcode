@@ -37,6 +37,7 @@ class BinaryHeap():
         while i >= 0:
             self.heapify(i)
             i -= 1
+        return self.heap
 
     def sort(self):
         output = []
@@ -50,25 +51,26 @@ class BinaryHeap():
     def __str__(self):
         return str(self.heap)
 
-heap = BinaryHeap()
-heap.insert(3)
-heap.insert(2)
-heap.insert(1)
-heap.insert(15)
-heap.insert(5)
-heap.insert(4)
-heap.insert(45)
-# print(heap)
-# print(heap.get_min())
-# heap.extract_min()
-# print(heap)
-# heap.extract_min()
-# print(heap)
-# heap.extract_min()
-# print(heap)
-# heap.extract_min()
-# print(heap)
+if __name__ == "__main__":
+    heap = BinaryHeap()
+    heap.insert(3)
+    heap.insert(2)
+    heap.insert(1)
+    heap.insert(15)
+    heap.insert(5)
+    heap.insert(4)
+    heap.insert(45)
+    # print(heap)
+    # print(heap.get_min())
+    # heap.extract_min()
+    # print(heap)
+    # heap.extract_min()
+    # print(heap)
+    # heap.extract_min()
+    # print(heap)
+    # heap.extract_min()
+    # print(heap)
 
-heap.build_heap([])
-print(heap)
-print(heap.sort())
+    heap.build_heap([])
+    print(heap)
+    print(heap.sort())

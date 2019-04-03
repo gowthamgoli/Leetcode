@@ -35,21 +35,26 @@ def knightDialer2(N):
         9: [2, 4],
     }
     
-    def dfs(graph, node, level, N):
+    def dfs(graph, node, paths, level, N):
+        if paths[node][level - 1] != -1:
+            return paths[node][level - 1]
         count = 0
         if level == N:
             return 1
         for neighbor in graph[node]:
-            count += dfs(graph, neighbor, level + 1, N)
+            count += dfs(graph, neighbor, paths, level + 1, N)
+        paths[node][level - 1] = count
         return count
 
     output = 0
+    paths = [ [-1 for j in range(N)] for  j in range(10)]
     for node, _ in graph.items():
-        output += dfs(graph, node, 1, N)
+        output += dfs(graph, node, paths, 1, N)
     return output % int(math.pow(10, 9) + 7)
 
 if __name__ == "__main__":
-    # print(knightDialer(3))
+    # print(knightDialer2(3))
     # print(knightDialer2(2))
+    # print(knightDialer(17))
     # print(knightDialer2(17))
     print(knightDialer2(161))

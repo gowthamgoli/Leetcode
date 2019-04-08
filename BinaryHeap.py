@@ -7,7 +7,7 @@ class BinaryHeap():
         n = self.size - 1
         self.heap.append(x)
         self.size += 1
-        i = n
+        i = n + 1
         while i > 0 and self.heap[i] < self.heap[(i - 1) // 2]:
             self.heap[i], self.heap[(i - 1) // 2] = self.heap[(i - 1) // 2], self.heap[i]
             i = (i - 1) // 2

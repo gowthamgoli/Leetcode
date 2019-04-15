@@ -22,6 +22,32 @@ def canFinish(numCourses, prerequisites):
     
     return False
 
+
+def canFinish2(numCourses, prerequisites):
+    
+    def dfs(i, visited, edges):
+            # print(f'dfs {i}')
+            visited[i] = -1
+            for neighbor in edges[i]:
+                if visited[neighbor] == -1:
+                    return False
+                elif visited[neighbor] == 0:
+                    if not dfs(neighbor, visited, edges):
+                        return False
+            visited[i] = 1
+            return True
+
+    visited = [0] * numCourses
+    edges = defaultdict(list)
+    for edge in prerequisites:
+        edges[edge[0]].append(edge[1])
+
+    for i in range(numCourses):
+        if not dfs(i, visited, edges):
+            return False
+    return True
+
 if __name__ == "__main__":
-    canFinish(2, [[1, 0]])
-    canFinish(2, [[1, 0], [0, 1]])
+    # print(canFinish2(2, [[1, 0]]))
+    # print(canFinish2(2, [[1, 0], [0, 1]]))
+    print(canFinish2(4, [[2, 0], [1, 0], [3, 1], [3, 2], [1, 3]]))

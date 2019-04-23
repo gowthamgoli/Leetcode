@@ -95,12 +95,8 @@ class LinkedBinaryTree:
             yield from self.subtree_postorder(root.right)
             yield root
 
-
     def inorder(self):
         yield from self.subtree_inorder(self.root)
-
-    def iterative_inorder(self):
-        
 
     def subtree_inorder(self, root):
         if(root is None):

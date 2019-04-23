@@ -80,6 +80,23 @@ def is_height_balanced(root):
     is_balanced, height = is_height_balanced_helper(root)
     return is_balanced
 
+def create_expression_tree(prefix_exp_str):
+    
+    def create_expression_tree_helper(root, expr, index):
+        if expr[index].isdigit():
+            return LinkedBinaryTree.Node(expr[index]), index
+        
+        root = LinkedBinaryTree.Node(expr[index])
+        l, l_index = create_expression_tree_helper(expr, index + 1)
+        r, r_index = create_expression_tree_helper(expr, l + 1)
+        root.left = l
+        root.right = r
+        return root, r_index
+
+    root = None
+    expr = prefix_exp_str.split()
+    create_expression_tree_helper(root, expr, 0)
+
 tree = [3, 2, 7, 9, None, 8, 4, 5, 1]
 root = listtoTreeNode(tree)
 prettyPrintTree(root)
@@ -95,3 +112,5 @@ prettyPrintTree(root)
 bin_tree = LinkedBinaryTree(root=root)
 print(is_height_balanced(bin_tree.root))
 
+prefix_exp_str = "* 2 + - 15 6 4"
+create_expression_tree(prefix_exp_str)
